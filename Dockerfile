@@ -3,18 +3,14 @@ WORKDIR /var/www/html
 RUN apt update && apt-get install tzdata cron supervisor software-properties-common gnupg2 ca-certificates lsb-release apt-transport-https -y
 RUN add-apt-repository ppa:ondrej/php -y
 RUN apt update
-RUN apt install nginx php8.3 php8.3-fpm phpunit git unzip curl wget php8.3-common php8.3-pgsql php8.3-xml php8.3-xmlrpc php8.3-curl php8.3-gd php8.3-imagick php8.3-cli php8.3-imap php8.3-mbstring php8.3-opcache php8.3-soap php8.3-zip php8.3-redis php8.3-intl -y
-RUN apt install -y php8.3-dev php8.3-sqlite3 git --no-install-recommends
+RUN apt install nginx php8.4 php8.4-fpm phpunit git unzip curl wget php8.4-common php8.4-pgsql php8.4-xml php8.4-xmlrpc php8.4-curl php8.4-gd php8.4-imagick php8.4-cli php8.4-imap php8.4-mbstring php8.4-opcache php8.4-soap php8.4-zip php8.4-redis php8.4-intl -y
+RUN apt install -y php8.4-dev php8.4-sqlite3 git --no-install-recommends
 
 RUN wget https://getcomposer.org/composer-stable.phar -O /usr/local/bin/composer && chmod +x /usr/local/bin/composer
-RUN wget https://github.com/elastic/apm-agent-php/releases/download/v1.8.1/apm-agent-php_1.8.1_all.deb
-RUN dpkg -i apm-agent-php_1.8.1_all.deb
 
 COPY --chown=www-data:www-data . /var/www/html/
-COPY cli.php.ini /etc/php/8.3/cli/php.ini
-COPY fpm.php.ini /etc/php/8.3/fpm/php.ini
-COPY 98-elastic-apm.ini /etc/php/8.3/fpm/conf.d/98-elastic-apm.ini
-COPY 98-elastic-apm.ini /etc/php/8.3/cli/conf.d/98-elastic-apm.ini
+COPY cli.php.ini /etc/php/8.4/cli/php.ini
+COPY fpm.php.ini /etc/php/8.4/fpm/php.ini
 #COPY configuration/supervisor.conf /etc/supervisor/conf.d/
 RUN composer clear-cache
 RUN COMPOSER_PROCESS_TIMEOUT=600 composer update
@@ -65,4 +61,4 @@ COPY default.conf /etc/nginx/sites-enabled/
 
 EXPOSE 80
 STOPSIGNAL SIGTERM
-CMD service php8.3-fpm start && nginx -g "daemon off;"
+CMD service php8.4-fpm start && nginx -g "daemon off;"
