@@ -14,7 +14,10 @@ COPY fpm.php.ini /etc/php/8.4/fpm/php.ini
 #COPY configuration/supervisor.conf /etc/supervisor/conf.d/
 RUN composer clear-cache
 RUN COMPOSER_PROCESS_TIMEOUT=600 composer update
-RUN COMPOSER_PROCESS_TIMEOUT=600 composer install --optimize-autoloader --no-dev
+#RUN COMPOSER_PROCESS_TIMEOUT=600 composer install --optimize-autoloader --no-dev
+RUN COMPOSER_PROCESS_TIMEOUT=600 composer clear-cache && \
+    rm -rf vendor/ composer.lock && \
+    composer install --no-interaction --prefer-dist --optimize-autoloader
 #RUN composer update
 #RUN composer install --optimize-autoloader --no-dev
 ##RUN php artisan key:generate --force
