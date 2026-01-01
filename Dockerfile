@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     libpng-dev \
     libmagickwand-dev \
-    libc-client-dev \
+    libc-client2007e-dev \
     libkrb5-dev \
     libzip-dev \
     libicu-dev \
