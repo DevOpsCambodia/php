@@ -42,4 +42,4 @@ EXPOSE 80
 STOPSIGNAL SIGTERM
 
 # CMD ["/bin/bash", "-c", "supervisord -c /etc/supervisor/supervisord.conf && nginx -g 'daemon off;'"]
-CMD ["/bin/bash", "-c", "nginx -g 'daemon off;'"]
+CMD ["/bin/bash", "-c", "service php8.4-fpm start && nginx -g 'daemon off;'"]
