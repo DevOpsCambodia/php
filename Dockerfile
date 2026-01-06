@@ -38,7 +38,6 @@ RUN apt-get update && apt-get upgrade -y \
     && apt-get update \
     && apt-get install -y yarn \
     && apt-get install -y default-mysql-client mariadb-client \
-    && apt-get install -y postgresql-client-${POSTGRES_VERSION} \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
