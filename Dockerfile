@@ -37,7 +37,7 @@ RUN apt-get update && apt-get upgrade -y \
     && echo "deb [signed-by=/etc/apt/keyrings/pgdg.gpg] http://apt.postgresql.org/pub/repos/apt noble-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && apt-get update \
     && apt-get install -y yarn \
-    && apt-get install -y ${MYSQL_CLIENT} \
+    && apt-get install -y default-mysql-client mariadb-client \
     && apt-get install -y postgresql-client-${POSTGRES_VERSION} \
     && apt-get -y autoremove \
     && apt-get clean \
