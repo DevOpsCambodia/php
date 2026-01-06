@@ -10,7 +10,7 @@ COPY cli.php.ini /usr/local/etc/php/php.ini
 COPY fpm.php.ini /usr/local/etc/php-fpm.d/zz-custom.ini
 
 # Copy supervisor configuration
-COPY supervisor.conf /etc/supervisor/conf.d/
+# COPY supervisor.conf /etc/supervisor/conf.d/
 
 # Install Composer dependencies
 
@@ -41,4 +41,5 @@ EXPOSE 80
 
 STOPSIGNAL SIGTERM
 
-CMD ["/bin/bash", "-c", "supervisord -c /etc/supervisor/supervisord.conf && nginx -g 'daemon off;'"]
+# CMD ["/bin/bash", "-c", "supervisord -c /etc/supervisor/supervisord.conf && nginx -g 'daemon off;'"]
+CMD ["/bin/bash", "-c", "nginx -g 'daemon off;'"]
