@@ -18,7 +18,7 @@ RUN composer clear-cache \
     && COMPOSER_PROCESS_TIMEOUT=600 composer clear-cache && \
     rm -rf vendor/ composer.lock && \
     composer install --no-dev --prefer-dist --optimize-autoloader --classmap-authoritative --no-interaction --no-progress && \
-    npm run build
+    npm install && npm run build
     
 
 # Run Laravel artisan commands
